@@ -1,5 +1,5 @@
 import { toast } from "sonner";
-import { EditorState, Plugin, PluginKey } from "@tiptap/pm/state";
+import { EditorState, Plugin, PluginKey, TextSelection } from "@tiptap/pm/state";
 import { Decoration, DecorationSet, EditorView } from "@tiptap/pm/view";
 import { EditorContext } from "../Editor.vue";
 
@@ -122,10 +122,22 @@ export function startAttachmentUpload(
         if (fromPos == null) return;
 
         const node = schema.nodes.attachment.create({ href: url, title: file.name, size: file.size });
-        const transaction = view.state.tr
+        let trNext = view.state.tr
             .replaceWith(fromPos, fromPos, node)
             .setMeta(uploadAttachmentKey, { remove: { id } });
-        view.dispatch(transaction);
+
+        const insertPos = fromPos + node.nodeSize;
+        const paragraph = schema.nodes.paragraph?.create();
+        if (paragraph) {
+            trNext = trNext.insert(insertPos, paragraph);
+            try {
+                const selection = TextSelection.near(trNext.doc.resolve(insertPos + 1));
+                trNext = trNext.setSelection(selection);
+            } catch (_) {
+            }
+        }
+
+        view.dispatch(trNext);
     });
 }
 
