@@ -1,0 +1,63 @@
+{
+  "name": "vue-tiptap-notion-editor",
+  "version": "1.0.0",
+  "author": "Mateusz Woźniak <mateuszwozniak1@icloud.com>",
+  "description": "",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/novel-vue.umd.cjs",
+  "module": "./dist/novel-vue.js",
+  "exports": {
+    ".": {
+      "import": "./dist/novel-vue.js",
+      "require": "./dist/novel-vue.umd.cjs"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && vue-tsc --emitDeclarationOnly",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@headlessui/vue": "^1.7.16",
+    "@tiptap/extension-color": "^2.1.7",
+    "@tiptap/extension-highlight": "^2.1.7",
+    "@tiptap/extension-horizontal-rule": "^2.1.7",
+    "@tiptap/extension-image": "^2.1.7",
+    "@tiptap/extension-link": "^2.1.7",
+    "@tiptap/extension-placeholder": "^2.1.7",
+    "@tiptap/extension-task-item": "^2.1.7",
+    "@tiptap/extension-task-list": "^2.1.7",
+    "@tiptap/extension-text-style": "^2.1.7",
+    "@tiptap/extension-underline": "^2.1.7",
+    "@tiptap/pm": "^2.1.7",
+    "@tiptap/starter-kit": "^2.1.7",
+    "@tiptap/suggestion": "^2.1.7",
+    "@tiptap/vue-3": "^2.1.7",
+    "@vercel/blob": "^0.9.3",
+    "@vueuse/core": "^10.4.1",
+    "ai": "^2.2.11",
+    "lucide-vue-next": "^0.274.0",
+    "sonner": "npm:vue-sonner@1.0.2",
+    "tailwindcss-animate": "^1.0.7",
+    "tippy.js": "^6.3.7",
+    "tiptap-markdown": "^0.8.2",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9",
+    "@tiptap/core": "^2.1.12",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "autoprefixer": "^10.4.15",
+    "postcss": "^8.4.29",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.5.3",
+    "vue-tsc": "^1.8.5"
+  }
+}
