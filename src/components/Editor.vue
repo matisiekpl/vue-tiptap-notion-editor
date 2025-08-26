@@ -9,6 +9,7 @@ import {Toaster} from "sonner";
 
 export interface EditorContext {
   onUpload: (file: File) => Promise<string>;
+  onAttachmentUpload: (file: File) => Promise<string>;
 }
 
 const props = defineProps({
@@ -23,13 +24,15 @@ const props = defineProps({
   content: {},
   contentHtml: {},
   modelModifiers: {default: () => ({})},
-  upload: {}
+  upload: {},
+  onAttachmentUpload: {}
 });
 const emit = defineEmits(['update:content', 'update:contentHtml']);
 
 const editor = useEditor({
   extensions: [...createDefaultExtension({
     onUpload: props.upload as any,
+    onAttachmentUpload: props.onAttachmentUpload as any,
   }), ...props.extensions] as any,
   editorProps: {
     ...defaultEditorProps,

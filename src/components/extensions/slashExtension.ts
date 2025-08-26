@@ -16,6 +16,7 @@ import {
 } from "lucide-vue-next";
 import SlashCommandList from "./slashCommandList.vue";
 import {startImageUpload} from "../plugins/uploadImages.ts";
+import { startAttachmentUpload } from "../plugins/uploadAttachments";
 import {EditorContext} from "../Editor.vue";
 
 const Command = Extension.create({
@@ -184,6 +185,26 @@ export function createSlashCommand(context: EditorContext) {
                             const file = input.files[0];
                             const pos = editor.view.state.selection.from;
                             startImageUpload(context, file, editor.view, pos);
+                        }
+                    };
+                    input.click();
+                },
+            },
+            {
+                title: "Attachment",
+                description: "Upload a file attachment.",
+                searchTerms: ["file", "document", "pdf", "zip"],
+                icon: Code,
+                command: ({editor, range}: CommandProps) => {
+                    editor.chain().focus().deleteRange(range).run();
+
+                    const input = document.createElement("input");
+                    input.type = "file";
+                    input.onchange = async () => {
+                        if (input.files?.length) {
+                            const file = input.files[0];
+                            const pos = editor.view.state.selection.from;
+                            startAttachmentUpload(context, file, editor.view, pos);
                         }
                     };
                     input.click();

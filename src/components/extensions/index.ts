@@ -14,6 +14,7 @@ import {InputRule} from "@tiptap/core";
 import {createSlashCommand} from "./slashExtension";
 import UploadImagesPlugin from "../plugins/uploadImages.ts";
 import UpdatedImage from "./updatedImage.ts";
+import Attachment from "./attachment";
 import "@tiptap/extension-list";
 import "@tiptap/extension-blockquote";
 import "@tiptap/extension-code-block";
@@ -112,6 +113,7 @@ export function createDefaultExtension(context: EditorContext) {
                 class: "rounded-lg border border-stone-200",
             },
         }),
+        Attachment,
         Placeholder.configure({
             placeholder: ({node}) => {
                 if (node.type.name === "heading") {

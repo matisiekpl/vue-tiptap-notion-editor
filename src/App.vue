@@ -10,9 +10,14 @@ function wait(ms, value) {
   return new Promise(resolve => setTimeout(resolve, ms, value));
 }
 
-async function onUpload() {
+async function onUpload(_file: File) {
   await wait(1000, 0);
   return 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Patinhas_esteve_aqui_-_Estadio_do_Cerecamp_4_-_panoramio.jpg/120px-Patinhas_esteve_aqui_-_Estadio_do_Cerecamp_4_-_panoramio.jpg';
+}
+
+async function onAttachmentUpload(_file: File) {
+  await wait(1000, 0);
+  return 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
 }
 
 const content = ref(defaultEditorContent);
@@ -28,7 +33,7 @@ const contentHTML = ref('');
       {{ contentHTML }}
     </div>
     <div class="border p-4">
-      <Editor ref="editor" v-model:content="content" v-model:content-html="contentHTML" :upload="onUpload"/>
+      <Editor ref="editor" v-model:content="content" v-model:content-html="contentHTML" :upload="onUpload" :on-attachment-upload="onAttachmentUpload"/>
     </div>
   </div>
 </template>
