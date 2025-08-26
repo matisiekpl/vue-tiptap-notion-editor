@@ -3,7 +3,7 @@ import Image from "@tiptap/extension-image";
 const UpdatedImage = Image.extend({
   addAttributes() {
     return {
-      ...this.parent?.(),
+      ...(this as any).parent?.(),
       width: {
         default: null,
       },

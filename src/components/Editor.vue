@@ -20,7 +20,7 @@ import { useStorage, useDebounceFn } from "@vueuse/core";
 import { useCompletion } from "ai/vue";
 
 import { defaultEditorContent } from "../lib/default-content";
-import { defaultExtensions } from "../components/extensions";
+import { defaultExtensions } from "./extensions";
 import { defaultEditorProps } from "../lib/props";
 import BubbleMenu from "../components/BubbleMenu/index.vue";
 import { Toaster } from "sonner";
@@ -124,7 +124,7 @@ const debouncedUpdate = useDebounceFn(({ editor }) => {
 }, props.debounceDuration);
 
 const editor = useEditor({
-  extensions: [...defaultExtensions, ...props.extensions],
+  extensions: [...defaultExtensions, ...props.extensions] as any,
   editorProps: {
     ...defaultEditorProps,
     ...props.editorProps,
