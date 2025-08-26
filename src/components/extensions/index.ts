@@ -4,7 +4,6 @@ import TiptapLink from "@tiptap/extension-link";
 import TiptapImage from "@tiptap/extension-image";
 import Placeholder from "@tiptap/extension-placeholder";
 import TiptapUnderline from "@tiptap/extension-underline";
-import Bold from '@tiptap/extension-bold'
 import TextStyle from "@tiptap/extension-text-style";
 import {Color} from "@tiptap/extension-color";
 import TaskItem from "@tiptap/extension-task-item";
@@ -118,14 +117,14 @@ export function createDefaultExtension(context: EditorContext) {
                 if (node.type.name === "heading") {
                     return `Heading ${node.attrs.level}`;
                 }
-                return "Press '/' for commands, or '++' for AI autocomplete...";
+                return "Press '/' for blocks...";
             },
             includeChildren: true,
         }),
         TiptapUnderline,
         TextStyle,
         Color,
-        Bold,
+        // Bold,
         Highlight.configure({
             multicolor: true,
         }),
