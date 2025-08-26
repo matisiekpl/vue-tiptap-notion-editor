@@ -15,7 +15,7 @@ import {createSlashCommand} from "./slashExtension";
 import UploadImagesPlugin from "../plugins/uploadImages.ts";
 import UpdatedImage from "./updatedImage.ts";
 import Attachment from "./attachment";
-import { createPasteUploads } from "./pasteUploads";
+import {createPasteUploads} from "./pasteUploads";
 import "@tiptap/extension-list";
 import "@tiptap/extension-blockquote";
 import "@tiptap/extension-code-block";
@@ -24,6 +24,11 @@ import "@tiptap/extension-italic";
 import "@tiptap/extension-heading";
 import '@tiptap/extension-code'
 import {EditorContext} from "../Editor.vue";
+import Document from '@tiptap/extension-document';
+
+const CustomDocument = Document.extend({
+    content: 'heading block*',
+})
 
 export function createDefaultExtension(context: EditorContext) {
     return [
@@ -115,11 +120,12 @@ export function createDefaultExtension(context: EditorContext) {
             },
         }),
         Attachment,
+        CustomDocument,
         createPasteUploads(context),
         Placeholder.configure({
             placeholder: ({node}) => {
                 if (node.type.name === "heading") {
-                    return `Heading ${node.attrs.level}`;
+                    return "Enter title";
                 }
                 return "Press '/' for blocks...";
             },
