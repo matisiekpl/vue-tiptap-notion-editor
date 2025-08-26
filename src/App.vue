@@ -1,33 +1,20 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import {ref} from "vue";
 import Editor from "./components/Editor.vue";
-import { Editor as EditorClass } from "@tiptap/core";
+import {Editor as EditorClass} from "@tiptap/core";
+import {defaultEditorContent} from "./lib/default-content";
 
 const editor = ref<{ editor: EditorClass }>();
-function setContent() {
-  if (editor.value) {
-    editor.value.editor.commands.setContent({
-      type: "doc",
-      content: [
-        {
-          type: "paragraph",
-          content: [
-            {
-              type: "text",
-              text: "Example Text",
-            },
-          ],
-        },
-      ],
-    });
-  }
-}
+
+const content = ref(defaultEditorContent);
+const contentHTML = ref('');
 </script>
 
 <template>
-  <div class="mt-8">
-    <button @click="setContent">Set Content</button>
-    <Editor blob-api="http://localhost:3000/api/upload" completion-api="http://localhost:3000/api/generate" ref="editor" />
+  <div>
+    {{ content }}
+    {{ contentHTML }}
+    <Editor ref="editor" v-model:content="content" v-model:content-html="contentHTML" />
   </div>
 </template>
 
