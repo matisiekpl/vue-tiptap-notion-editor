@@ -124,7 +124,7 @@ const debouncedUpdate = useDebounceFn(({ editor }) => {
 }, props.debounceDuration);
 
 const editor = useEditor({
-  extensions: [...defaultExtensions, ...props.extensions],
+  extensions: [...defaultExtensions, ...props.extensions] as any,
   editorProps: {
     ...defaultEditorProps,
     ...props.editorProps,

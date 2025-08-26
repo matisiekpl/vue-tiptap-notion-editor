@@ -3,7 +3,6 @@ import HorizontalRule from "@tiptap/extension-horizontal-rule";
 import TiptapLink from "@tiptap/extension-link";
 import TiptapImage from "@tiptap/extension-image";
 import Placeholder from "@tiptap/extension-placeholder";
-import Code from '@tiptap/extension-code'
 import TiptapUnderline from "@tiptap/extension-underline";
 import Bold from '@tiptap/extension-bold'
 import TextStyle from "@tiptap/extension-text-style";
@@ -16,12 +15,13 @@ import {InputRule} from "@tiptap/core";
 import SlashCommand from "./slashExtension";
 import UploadImagesPlugin from "../plugins/upload-images";
 import UpdatedImage from "./updated-image";
-import {BulletList, ListItem} from "@tiptap/extension-list";
-import Blockquote from "@tiptap/extension-blockquote";
-import CodeBlock from "@tiptap/extension-code-block";
-import Strike from "@tiptap/extension-strike";
-import Italic from "@tiptap/extension-italic";
-import Heading from "@tiptap/extension-heading";
+import "@tiptap/extension-list";
+import "@tiptap/extension-blockquote";
+import "@tiptap/extension-code-block";
+import "@tiptap/extension-strike";
+import "@tiptap/extension-italic";
+import "@tiptap/extension-heading";
+import '@tiptap/extension-code'
 
 export const defaultExtensions = [
     StarterKit.configure({
@@ -65,9 +65,14 @@ export const defaultExtensions = [
         },
         gapcursor: false,
     }),
-    BulletList, ListItem,
-    Blockquote, CodeBlock,
-    Code, Heading, Strike, Italic,
+    // BulletList,
+    // ListItem,
+    // Blockquote,
+    // CodeBlock,
+    // Code,
+    // Heading,
+    // Strike,
+    // Italic,
     // patch to fix horizontal rule bug: https://github.com/ueberdosis/tiptap/pull/3859#issuecomment-1536799740
     HorizontalRule.extend({
         addInputRules() {
