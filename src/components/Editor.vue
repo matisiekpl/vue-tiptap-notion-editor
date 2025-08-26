@@ -2,10 +2,14 @@
 import {type PropType, watchEffect, ref} from "vue";
 import {EditorContent, Extension, useEditor,} from "@tiptap/vue-3";
 import {EditorProps} from "@tiptap/pm/view";
-import {defaultExtensions} from "./extensions";
+import {createDefaultExtension} from "./extensions";
 import {defaultEditorProps} from "../lib/props";
 import BubbleMenu from "../components/BubbleMenu/index.vue";
 import {Toaster} from "sonner";
+
+export interface EditorContext {
+  onUpload: (file: File) => Promise<string>;
+}
 
 const props = defineProps({
   extensions: {
@@ -18,12 +22,15 @@ const props = defineProps({
   },
   content: {},
   contentHtml: {},
-  modelModifiers: {default: () => ({})}
+  modelModifiers: {default: () => ({})},
+  upload: {}
 });
 const emit = defineEmits(['update:content', 'update:contentHtml']);
 
 const editor = useEditor({
-  extensions: [...defaultExtensions, ...props.extensions] as any,
+  extensions: [...createDefaultExtension({
+    onUpload: props.upload as any,
+  }), ...props.extensions] as any,
   editorProps: {
     ...defaultEditorProps,
     ...props.editorProps,
