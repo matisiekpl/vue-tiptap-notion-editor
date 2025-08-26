@@ -65,6 +65,9 @@ export const defaultExtensions = [
         },
         gapcursor: false,
     }),
+    BulletList, ListItem,
+    Blockquote, CodeBlock,
+    Code, Heading, Strike, Italic,
     // patch to fix horizontal rule bug: https://github.com/ueberdosis/tiptap/pull/3859#issuecomment-1536799740
     HorizontalRule.extend({
         addInputRules() {
@@ -144,12 +147,4 @@ export const defaultExtensions = [
         transformCopiedText: true,
     }),
     SlashCommand,
-    BulletList,
-    ListItem,
-    Blockquote,
-    CodeBlock,
-    Code,
-    Heading,
-    Strike,
-    Italic,
 ];

@@ -18,6 +18,7 @@ import {
 } from "lucide-vue-next";
 import SlashCommandList from "./slashCommandList.vue";
 import { startImageUpload } from "../plugins/upload-images";
+// import Magic from "../icons/magic.vue";
 
 const Command = Extension.create({
   name: "slash-command",
