@@ -6,6 +6,8 @@ import {createDefaultExtension} from "./extensions";
 import {defaultEditorProps} from "../lib/props";
 import BubbleMenu from "../components/BubbleMenu/index.vue";
 import {Toaster} from "sonner";
+import {DragHandle} from '@tiptap/extension-drag-handle-vue-3';
+import {GripVertical} from "lucide-vue-next";
 
 export interface EditorContext {
   onUpload: (file: File) => Promise<string>;
@@ -62,6 +64,11 @@ watchEffect(() => {
   <div @click="editor?.chain().focus().run()">
     <BubbleMenu v-if="editor" :editor="editor"/>
     <EditorContent :editor="editor"/>
+    <DragHandle v-if="editor" :editor="editor">
+      <div class="p-2 bg-white rounded-lg border mr-2 mt-1.5 hover:brightness-90 transition-all cursor-pointer">
+        <GripVertical size="12"/>
+      </div>
+    </DragHandle>
   </div>
   <Toaster/>
 </template>

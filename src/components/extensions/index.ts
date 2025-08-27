@@ -23,7 +23,8 @@ import "@tiptap/extension-code-block";
 import "@tiptap/extension-strike";
 import "@tiptap/extension-italic";
 import "@tiptap/extension-heading";
-import '@tiptap/extension-code'
+import '@tiptap/extension-code';
+import '@tiptap/extension-bold';
 import {EditorContext} from "../Editor.vue";
 
 const CustomDocument = Document.extend({
@@ -73,6 +74,7 @@ export function createDefaultExtension(context: EditorContext) {
             },
             gapcursor: false,
         }),
+
         HorizontalRule.extend({
             addInputRules() {
                 return [
@@ -134,7 +136,6 @@ export function createDefaultExtension(context: EditorContext) {
         TiptapUnderline,
         TextStyle,
         Color,
-        // Bold,
         Highlight.configure({
             multicolor: true,
         }),
