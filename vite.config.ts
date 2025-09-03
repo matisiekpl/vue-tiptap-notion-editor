@@ -2,6 +2,7 @@ import {defineConfig} from "vite";
 import {resolve} from "path";
 import vue from "@vitejs/plugin-vue";
 import dts from "vite-plugin-dts";
+import tailwindcss from '@tailwindcss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,14 +11,15 @@ export default defineConfig({
         dts({
             rollupTypes: true,
         }),
+        tailwindcss(),
     ],
     build: {
         lib: {
             // Could also be a dictionary or array of multiple entry points
             entry: resolve(__dirname, "index.ts"),
-            name: "Novel Vue",
+            name: "Editor",
             // the proper extensions will be added
-            fileName: "novel-vue",
+            fileName: "editor",
         },
         rollupOptions: {
             // make sure to externalize deps that shouldn't be bundled

@@ -25,14 +25,14 @@ const contentHTML = ref('');
 </script>
 
 <template>
-  <div class="m-4">
-    <div class="p-4 border">
+  <div class="m-12">
+    <div class="p-4 border-t border-r border-l">
       {{ content }}
     </div>
     <div class="p-4 border">
       {{ contentHTML }}
     </div>
-    <div class="border p-4">
+    <div class="border-b border-l border-r p-4">
       <Editor ref="editor" v-model:content="content" v-model:content-html="contentHTML" :upload="onUpload" :on-attachment-upload="onAttachmentUpload"/>
     </div>
   </div>
