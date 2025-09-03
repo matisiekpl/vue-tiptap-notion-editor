@@ -32,7 +32,7 @@ const CustomDocument = Document.extend({
 })
 
 export function createDefaultExtension(context: EditorContext) {
-    return [
+    const extensions = [
         StarterKit.configure({
             bulletList: {
                 HTMLAttributes: {
@@ -122,10 +122,12 @@ export function createDefaultExtension(context: EditorContext) {
             },
         }),
         Attachment,
-        CustomDocument,
         createPasteUploads(context),
         Placeholder.configure({
             placeholder: ({node}) => {
+                if (context.placeholder) {
+                    return context.placeholder;
+                }
                 if (node.type.name === "heading") {
                     return "Enter title";
                 }
@@ -156,4 +158,6 @@ export function createDefaultExtension(context: EditorContext) {
         }),
         createSlashCommand(context),
     ]
+    if (context.structuredDocument) extensions.push(CustomDocument);
+    return extensions;
 }

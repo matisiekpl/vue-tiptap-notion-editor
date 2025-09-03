@@ -33,7 +33,8 @@ const contentHTML = ref('');
       {{ contentHTML }}
     </div>
     <div class="border-b border-l border-r p-4">
-      <Editor ref="editor" v-model:content="content" v-model:content-html="contentHTML" :upload="onUpload" :on-attachment-upload="onAttachmentUpload"/>
+      <Editor ref="editor" v-model:content="content" v-model:content-html="contentHTML" :upload="onUpload"
+              :on-attachment-upload="onAttachmentUpload"/>
     </div>
   </div>
 </template>

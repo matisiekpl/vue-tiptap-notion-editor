@@ -12,6 +12,8 @@ import {GripVertical} from "lucide-vue-next";
 export interface EditorContext {
   onUpload: (file: File) => Promise<string>;
   onAttachmentUpload: (file: File) => Promise<string>;
+  structuredDocument?: boolean;
+  placeholder?: string;
 }
 
 const props = defineProps({
@@ -27,7 +29,9 @@ const props = defineProps({
   contentHtml: {},
   modelModifiers: {default: () => ({})},
   upload: {},
-  onAttachmentUpload: {}
+  onAttachmentUpload: {},
+  structuredDocument: {},
+  placeholder: {}
 });
 const emit = defineEmits(['update:content', 'update:contentHtml']);
 
@@ -35,6 +39,8 @@ const editor = useEditor({
   extensions: [...createDefaultExtension({
     onUpload: props.upload as any,
     onAttachmentUpload: props.onAttachmentUpload as any,
+    structuredDocument: props.structuredDocument as any,
+    placeholder: props.placeholder as any,
   }), ...props.extensions] as any,
   editorProps: {
     ...defaultEditorProps,
