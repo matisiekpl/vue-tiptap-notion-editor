@@ -1,6 +1,6 @@
 {
   "name": "vue-tiptap-notion-editor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Mateusz Woźniak <matisiek11@gmail.com>",
   "description": "Tiptap-based Notion-inspired Editor",
   "type": "module",

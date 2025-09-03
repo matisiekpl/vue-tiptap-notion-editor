@@ -71,8 +71,10 @@ watchEffect(() => {
     <BubbleMenu v-if="editor" :editor="editor"/>
     <EditorContent :editor="editor"/>
     <DragHandle v-if="editor" :editor="editor">
-      <div class="p-2 bg-white rounded-lg border mr-2 mt-1.5 hover:brightness-90 transition-all cursor-pointer">
-        <GripVertical size="12"/>
+      <div class="relative">
+        <div class="p-2 bg-white rounded-lg border mr-2 hover:brightness-90 transition-all cursor-pointer">
+          <GripVertical size="12"/>
+        </div>
       </div>
     </DragHandle>
   </div>
