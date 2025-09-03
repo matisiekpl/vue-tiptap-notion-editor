@@ -1,8 +1,8 @@
 {
-  "name": "novel-vue",
-  "version": "0.0.4",
-  "author": "Naveen Naidu <mnaveennaidu9927@gmail.com>",
-  "description": "A Vue 3 component for the novel editor",
+  "name": "vue-tiptap-notion-editor",
+  "version": "1.0.0",
+  "author": "Mateusz Woźniak <matisiek11@gmail.com>",
+  "description": "Tiptap-based Notion-inspired Editor",
   "type": "module",
   "files": [
     "dist"
