@@ -33,7 +33,7 @@ const props = defineProps({
   structuredDocument: {},
   placeholder: {}
 });
-const emit = defineEmits(['update:content', 'update:contentHtml']);
+const emit = defineEmits(['update:content', 'update:contentHtml','hydrated']);
 
 const editor = useEditor({
   extensions: [...createDefaultExtension({
@@ -62,6 +62,7 @@ watchEffect(() => {
   if (editor.value && props.content && !hydrated.value) {
     editor.value.commands.setContent(props.content);
     hydrated.value = true;
+    emit('hydrated');
   }
 });
 </script>
