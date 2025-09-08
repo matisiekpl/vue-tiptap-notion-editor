@@ -33,9 +33,10 @@ const props = defineProps({
   structuredDocument: {},
   placeholder: {}
 });
-const emit = defineEmits(['update:content', 'update:contentHtml','hydrated']);
+const emit = defineEmits(['update:content', 'update:contentHtml', 'hydrated', 'ready']);
 
 const editor = useEditor({
+  content: props.content as string,
   extensions: [...createDefaultExtension({
     onUpload: props.upload as any,
     onAttachmentUpload: props.onAttachmentUpload as any,
@@ -49,6 +50,9 @@ const editor = useEditor({
   onUpdate: (e) => {
     emit('update:content', e.editor.getJSON());
     emit('update:contentHtml', e.editor.getHTML());
+  },
+  onCreate: (_) => {
+    emit('ready');
   },
   autofocus: "end",
 });
