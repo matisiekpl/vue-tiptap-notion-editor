@@ -836,12 +836,12 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-italic/-/extension-italic-3.3.0.tgz#14c79ac044570edccd39469e728909fa46850f6f"
   integrity sha512-O43OReewZd1n//yy7M2qw/Rrz8RW/QK7dD3H4tr0+TNC+0KYYXZMhsB5P7dAkygEfWakQwftUfUlUiZ/UZKtpw==
 
-"@tiptap/extension-link@^2.1.7":
-  version "2.1.7"
-  resolved "https://registry.yarnpkg.com/@tiptap/extension-link/-/extension-link-2.1.7.tgz#2705c212d105ccf411d505e334ece4a723971ee4"
-  integrity sha512-NDfoMCkThng1B530pMg5y69+eWoghZXK2uCntrJH7Rs8jNeGMyt9wGIOd7N8ZYz0oJ2ZYKzZjS0RANdBDS17DA==
+"@tiptap/extension-link@^3.3.0":
+  version "3.4.4"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-link/-/extension-link-3.4.4.tgz#2280f041bc79e9aba9ba7d3c20b0a5fd4b5e1d27"
+  integrity sha512-swWOkUeSsO6Xp83ik1mzOuDq8xyDZDbZk9NNHHIDWWlHSBp0/Rm+adHlfbr2tyahi69wwuH5gHxUiAua7X/w+Q==
   dependencies:
-    linkifyjs "^4.1.0"
+    linkifyjs "^4.3.2"
 
 "@tiptap/extension-list-item@^2.1.7":
   version "2.1.7"
@@ -2145,10 +2145,10 @@ linkify-it@^4.0.1:
   dependencies:
     uc.micro "^1.0.1"
 
-linkifyjs@^4.1.0:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/linkifyjs/-/linkifyjs-4.1.1.tgz#73d427e3bbaaf4ca8e71c589ad4ffda11a9a5fde"
-  integrity sha512-zFN/CTVmbcVef+WaDXT63dNzzkfRBKT1j464NJQkV7iSgJU0sLBus9W0HBwnXK13/hf168pbrx/V/bjEHOXNHA==
+linkifyjs@^4.3.2:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/linkifyjs/-/linkifyjs-4.3.2.tgz#d97eb45419aabf97ceb4b05a7adeb7b8c8ade2b1"
+  integrity sha512-NT1CJtq3hHIreOianA8aSXn6Cw0JzYOuDQbOrSPe7gqFnCpKP++MQe3ODgO3oh2GJFORkAAdqredOa60z63GbA==
 
 lodash.castarray@^4.4.0:
   version "4.4.0"
