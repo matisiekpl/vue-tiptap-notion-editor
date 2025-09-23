@@ -72,9 +72,10 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div @click="editor?.chain().focus().run()">
+  <div @click="editor?.chain().focus().run()" class="flex-col flex h-full">
     <BubbleMenu v-if="editor" :editor="editor"/>
-    <EditorContent :editor="editor"/>
+    <EditorContent :editor="editor" class="cursor-text"/>
+    <div class="grow w-full cursor-text"></div>
     <DragHandle v-if="editor" :editor="editor">
       <div class="relative">
         <div class="p-2 bg-white rounded-lg border mr-2 hover:brightness-90 transition-all cursor-pointer">
