@@ -1,7 +1,8 @@
 import { toast } from "sonner";
-import { EditorState, Plugin, PluginKey } from "@tiptap/pm/state";
+import { EditorState, Plugin, PluginKey, TextSelection } from "@tiptap/pm/state";
 import { Decoration, DecorationSet, EditorView } from "@tiptap/pm/view";
 import { EditorContext } from "../Editor.vue";
+import { Fragment } from "@tiptap/pm/model";
 
 const uploadAttachmentKey = new PluginKey("upload-attachment");
 
@@ -32,7 +33,7 @@ const UploadAttachmentsPlugin = () =>
                     container.appendChild(icon);
                     container.appendChild(text);
                     placeholder.appendChild(container);
-                    const deco = Decoration.widget(pos + 1, placeholder, { id });
+                    const deco = Decoration.widget(pos, placeholder, { id });
                     set = set.add(tr.doc, [deco]);
                 } else if (action && action.remove) {
                     set = set.remove(
@@ -85,14 +86,52 @@ export function startAttachmentUpload(
     handleAttachmentUpload(context, file).then((url) => {
         const { schema } = view.state;
 
-        let fromPos = findPlaceholder(view.state, id);
-        if (fromPos == null) return;
+        let pos = findPlaceholder(view.state, id);
+        if (pos == null) return;
 
-        const node = schema.nodes.attachment.create({ href: url, title: file.name });
-        const transaction = view.state.tr
-            .replaceWith(fromPos, fromPos, node)
+        const attachmentNode = schema.nodes.attachment.create({ href: url, title: file.name });
+        const paragraphNode = schema.nodes.paragraph.create();
+
+        let tr = view.state.tr;
+
+        const $pos = tr.doc.resolve(pos);
+        const paragraphType = schema.nodes.paragraph;
+
+        if ($pos.parent.type === paragraphType && $pos.parent.content.size === 0) {
+            const from = $pos.before();
+            const to = $pos.after();
+            tr = tr.delete(from, to);
+            pos = from;
+        } else {
+            const before = $pos.nodeBefore;
+            if (before && before.type === paragraphType && before.content.size === 0) {
+                const from = pos - before.nodeSize;
+                tr = tr.delete(from, pos);
+                pos = from;
+            }
+        }
+
+        const $afterCleanupPos = tr.doc.resolve(pos);
+        const shouldAddParagraph = !$afterCleanupPos.nodeAfter;
+
+        const fragment = Fragment.fromArray(
+            shouldAddParagraph ? [attachmentNode, paragraphNode] : [attachmentNode]
+        );
+
+        let transaction = tr
+            .replaceWith(pos, pos, fragment)
             .setMeta(uploadAttachmentKey, { remove: { id } });
+
+        if (shouldAddParagraph) {
+            const paragraphPos = pos + attachmentNode.nodeSize + 1;
+            transaction = transaction.setSelection(
+                TextSelection.create(transaction.doc, paragraphPos)
+            );
+        }
+
+        transaction = transaction.scrollIntoView();
         view.dispatch(transaction);
+        view.focus();
     });
 }
 
