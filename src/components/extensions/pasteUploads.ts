@@ -66,7 +66,7 @@ export function createPasteUploads(context: EditorContext) {
 
               if (!files.length) return false;
 
-              const pos = view.state.selection.from;
+              const pos = view.state.selection.to;
 
               for (const file of files) {
                 if (file.type && file.type.includes("image/")) {

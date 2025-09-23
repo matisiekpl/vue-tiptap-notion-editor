@@ -1,7 +1,8 @@
 import {toast} from "sonner";
-import {EditorState, Plugin, PluginKey} from "@tiptap/pm/state";
+import {EditorState, Plugin, PluginKey, TextSelection} from "@tiptap/pm/state";
 import {Decoration, DecorationSet, EditorView} from "@tiptap/pm/view";
 import {EditorContext} from "../Editor.vue";
+import {Fragment} from "@tiptap/pm/model";
 
 const uploadKey = new PluginKey("upload-image");
 
@@ -28,7 +29,7 @@ const UploadImagesPlugin = () =>
                     );
                     image.src = src;
                     placeholder.appendChild(image);
-                    const deco = Decoration.widget(pos + 1, placeholder, {
+                    const deco = Decoration.widget(pos, placeholder, {
                         id,
                     });
                     set = set.add(tr.doc, [deco]);
@@ -95,11 +96,50 @@ export function startImageUpload(context: EditorContext, file: File, view: Edito
 
         const imageSrc = typeof src === "object" ? reader.result : src;
 
-        const node = schema.nodes.image.create({src: imageSrc});
-        const transaction = view.state.tr
-            .replaceWith(pos, pos, node)
+        const imageNode = schema.nodes.image.create({src: imageSrc});
+        const paragraphNode = schema.nodes.paragraph.create();
+
+        let tr = view.state.tr;
+
+        const $pos = tr.doc.resolve(pos);
+        const paragraphType = schema.nodes.paragraph;
+
+        if ($pos.parent.type === paragraphType && $pos.parent.content.size === 0) {
+            const from = $pos.before();
+            const to = $pos.after();
+            tr = tr.delete(from, to);
+            pos = from;
+        } else {
+            const before = $pos.nodeBefore;
+            if (before && before.type === paragraphType && before.content.size === 0) {
+                const from = pos - before.nodeSize;
+                tr = tr.delete(from, pos);
+                pos = from;
+            }
+        }
+
+        // After potential deletions above, re-resolve position to decide if we need a trailing paragraph
+        const $afterCleanupPos = tr.doc.resolve(pos);
+        const shouldAddParagraph = !$afterCleanupPos.nodeAfter;
+
+        const fragment = Fragment.fromArray(
+            shouldAddParagraph ? [imageNode, paragraphNode] : [imageNode]
+        );
+
+        let transaction = tr
+            .replaceWith(pos, pos, fragment)
             .setMeta(uploadKey, {remove: {id}});
+
+        if (shouldAddParagraph) {
+            const paragraphPos = pos + imageNode.nodeSize + 1;
+            transaction = transaction.setSelection(
+                TextSelection.create(transaction.doc, paragraphPos)
+            );
+        }
+
+        transaction = transaction.scrollIntoView();
         view.dispatch(transaction);
+        view.focus();
     });
 }
 
