@@ -21,7 +21,7 @@ const UploadImagesPlugin = () =>
                     const {id, pos, src} = action.add;
 
                     const placeholder = document.createElement("div");
-                    placeholder.setAttribute("class", "img-placeholder");
+                    placeholder.setAttribute("class", "img-placeholder bg-white");
                     const image = document.createElement("img");
                     image.setAttribute(
                         "class",
