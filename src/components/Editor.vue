@@ -27,13 +27,14 @@ const props = defineProps({
   },
   content: {},
   contentHtml: {},
+  title: {},
   modelModifiers: {default: () => ({})},
   upload: {},
   onAttachmentUpload: {},
   structuredDocument: {},
   placeholder: {}
 });
-const emit = defineEmits(['update:content', 'update:contentHtml', 'hydrated', 'ready']);
+const emit = defineEmits(['update:content', 'update:contentHtml', 'hydrated', 'ready', 'update:title']);
 
 const editor = useEditor({
   content: props.content as string,
@@ -50,6 +51,11 @@ const editor = useEditor({
   onUpdate: (e) => {
     emit('update:content', e.editor.getJSON());
     emit('update:contentHtml', e.editor.getHTML());
+    if (props.structuredDocument) {
+      // @ts-ignore
+      const title = e.editor.getJSON()?.content?.[0]?.content?.[0]?.text as string | undefined ?? '';
+      emit('update:title', title);
+    }
   },
   onCreate: (_) => {
     emit('ready');

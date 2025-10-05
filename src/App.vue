@@ -22,6 +22,7 @@ async function onAttachmentUpload(_file: File) {
 
 const content = ref(defaultEditorContent);
 const contentHTML = ref('');
+const title = ref('');
 </script>
 
 <template>
@@ -32,9 +33,12 @@ const contentHTML = ref('');
     <div class="p-4 border">
       {{ contentHTML }}
     </div>
+    <div class="p-4 border">
+      {{ title }}
+    </div>
     <div class="border-b border-l border-r p-4">
-      <Editor ref="editor" v-model:content="content" v-model:content-html="contentHTML" :upload="onUpload"
-              :on-attachment-upload="onAttachmentUpload"/>
+      <Editor ref="editor" v-model:content="content" v-model:content-html="contentHTML" v-model:title="title" :upload="onUpload"
+              :on-attachment-upload="onAttachmentUpload" :structured-document="true"/>
     </div>
   </div>
 </template>
