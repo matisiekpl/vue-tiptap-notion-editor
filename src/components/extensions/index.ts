@@ -113,12 +113,12 @@ export function createDefaultExtension(context: EditorContext) {
         }).configure({
             allowBase64: true,
             HTMLAttributes: {
-                class: "rounded-lg border border-stone-200",
+                class: "rounded-lg !my-4",
             },
         }),
         UpdatedImage.configure({
             HTMLAttributes: {
-                class: "rounded-lg border border-stone-200",
+                class: "rounded-lg !my-4",
             },
         }),
         Attachment,
