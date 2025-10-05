@@ -166,3 +166,15 @@ ul[data-type="taskList"] > li > div  {
     margin-bottom: 0 !important;
     line-height: 0.7;
 }
+
+.prose :where(h1):not(:where([class~=not-prose] *)) {
+    font-weight: 500;
+    font-size: 2.65em;
+}
+.prose :where(h2):not(:where([class~=not-prose] *)) {
+    font-weight: 500;
+    font-size: 1.55em;
+}
+.prose :where(h3):not(:where([class~=not-prose] *)) {
+    font-weight: 500;
+}
