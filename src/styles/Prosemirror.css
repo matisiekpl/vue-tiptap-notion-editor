@@ -138,13 +138,13 @@ ul[data-type="taskList"] li > label input[type="checkbox"] {
     }
 }
 
-.ProseMirror.prose-lg {
-    line-height: 1.5;
+.ProseMirror.prose {
+    line-height: 1.65;
 }
 
-.ProseMirror.prose-lg p,
-.ProseMirror.prose-lg li {
-    line-height: 1.5;
+.ProseMirror.prose p,
+.ProseMirror.prose li {
+    line-height: 1.55;
 }
 
 
@@ -166,4 +166,3 @@ ul[data-type="taskList"] > li > div  {
     margin-bottom: 0 !important;
     line-height: 0.7;
 }
-
