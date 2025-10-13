@@ -1,4 +1,3 @@
-import {toast} from "sonner";
 import {EditorState, Plugin, PluginKey, TextSelection} from "@tiptap/pm/state";
 import {Decoration, DecorationSet, EditorView} from "@tiptap/pm/view";
 import {EditorContext} from "../Editor.vue";
@@ -59,12 +58,10 @@ function findPlaceholder(state: EditorState, id: {}) {
 export function startImageUpload(context: EditorContext, file: File, view: EditorView, pos: number) {
     // check if the file is an image
     if (!file.type.includes("image/")) {
-        toast.error("File type not supported.");
         return;
 
         // check if the file size is less than 20MB
     } else if (file.size / 1024 / 1024 > 20) {
-        toast.error("File size too big (max 20MB).");
         return;
     }
 
@@ -93,6 +90,14 @@ export function startImageUpload(context: EditorContext, file: File, view: Edito
 
         let pos = findPlaceholder(view.state, id);
         if (pos == null) return;
+
+        // If upload result is null/undefined, remove placeholder and do not insert image
+        if (src == null) {
+            const tr = view.state.tr.setMeta(uploadKey, {remove: {id}}).scrollIntoView();
+            view.dispatch(tr);
+            view.focus();
+            return;
+        }
 
         const imageSrc = typeof src === "object" ? reader.result : src;
 
@@ -140,24 +145,31 @@ export function startImageUpload(context: EditorContext, file: File, view: Edito
         transaction = transaction.scrollIntoView();
         view.dispatch(transaction);
         view.focus();
+    }).catch(() => {
+        // On failure, ensure the placeholder is removed
+        const pos = findPlaceholder(view.state, id);
+        if (pos == null) return;
+        const tr = view.state.tr.setMeta(uploadKey, {remove: {id}}).scrollIntoView();
+        view.dispatch(tr);
+        view.focus();
     });
 }
 
 export const handleImageUpload = (context: EditorContext, file: File) => {
     return new Promise((resolve) => {
-        toast.promise(
-            context.onUpload(file).then(async (url) => {
-                let image = new Image();
-                image.src = url;
-                image.onload = () => {
-                    resolve(url);
-                };
-            }),
-            {
-                loading: "Uploading image...",
-                success: () => "Image uploaded successfully.",
-                error: () => "Image uploaded failed.",
+        context.onUpload(file).then(async (url) => {
+            if (url == null) {
+                resolve(null);
+                return;
             }
-        );
+            const image = new Image();
+            image.src = url;
+            image.onload = () => {
+                resolve(url);
+            };
+            image.onerror = () => {
+                resolve(null);
+            };
+        }).catch(() => resolve(null));
     });
 };

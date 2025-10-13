@@ -12,6 +12,7 @@ function wait(ms, value) {
 
 async function onUpload(_file: File) {
   await wait(1000, 0);
+  return null;
   return 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Patinhas_esteve_aqui_-_Estadio_do_Cerecamp_4_-_panoramio.jpg/120px-Patinhas_esteve_aqui_-_Estadio_do_Cerecamp_4_-_panoramio.jpg';
 }
 
