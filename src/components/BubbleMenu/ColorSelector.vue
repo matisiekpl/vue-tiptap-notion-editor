@@ -135,10 +135,6 @@ const TEXT_COLORS = [
     name: "Pink",
     color: "#BA4081",
   },
-  {
-    name: "Gray",
-    color: "#A8A29E",
-  },
 ];
 
 const HIGHLIGHT_COLORS = [
