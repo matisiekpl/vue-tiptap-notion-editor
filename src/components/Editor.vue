@@ -90,7 +90,7 @@ watchEffect(() => {
       </div>
     </DragHandle>
   </div>
-  <div class="hidden md:order-last md:order-first"></div>
+  <div class="hidden md:order-last md:order-first order-first order-last"></div>
   <Toaster/>
 </template>
 
