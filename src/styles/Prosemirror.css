@@ -139,14 +139,25 @@ ul[data-type="taskList"] li > label input[type="checkbox"] {
 }
 
 .ProseMirror.prose {
-    line-height: 1.65;
+    font-size: 16px;
+    line-height: 1.53;
+    color: var(--body-primary-color, var(--foreground));
 }
 
 .ProseMirror.prose p,
 .ProseMirror.prose li {
-    line-height: 1.55;
+    line-height: 1.53;
 }
 
+.ProseMirror.prose a {
+    text-decoration: underline;
+    color: var(--body-primary-color, var(--foreground));
+}
+
+.ProseMirror.prose a:hover {
+    text-decoration: none;
+    color: var(--body-primary-color, var(--foreground));
+}
 
 ul[data-type="taskList"] li[data-checked="true"] > div > p {
     color: var(--novel-stone-400);
@@ -167,14 +178,38 @@ ul[data-type="taskList"] > li > div  {
     line-height: 0.7;
 }
 
+.ProseMirror.prose h1,
 .prose :where(h1):not(:where([class~=not-prose] *)) {
-    font-weight: 500;
-    font-size: 2.65em;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 700;
 }
+.ProseMirror.prose h2,
 .prose :where(h2):not(:where([class~=not-prose] *)) {
-    font-weight: 500;
-    font-size: 1.55em;
+    font-size: 24px;
+    line-height: 26px;
+    font-weight: 600;
 }
+.ProseMirror.prose h3,
 .prose :where(h3):not(:where([class~=not-prose] *)) {
-    font-weight: 500;
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 600;
+}
+.ProseMirror.prose h4,
+.prose :where(h4):not(:where([class~=not-prose] *)) {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+}
+.ProseMirror.prose h5,
+.prose :where(h5):not(:where([class~=not-prose] *)) {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 590;
+}
+.ProseMirror.prose h6,
+.prose :where(h6):not(:where([class~=not-prose] *)) {
+    font-size: 13px;
+    line-height: 1.24;
 }
