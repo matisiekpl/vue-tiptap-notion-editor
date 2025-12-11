@@ -60,7 +60,6 @@ const editor = useEditor({
   onCreate: (_) => {
     emit('ready');
   },
-  autofocus: "end",
 });
 
 defineExpose({
