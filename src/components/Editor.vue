@@ -34,7 +34,7 @@ const props = defineProps({
   structuredDocument: {},
   placeholder: {}
 });
-const emit = defineEmits(['update:content', 'update:contentHtml', 'hydrated', 'ready', 'update:title', 'cursor-location-changed']);
+const emit = defineEmits(['update:content', 'update:contentHtml', 'hydrated', 'ready', 'update:title', 'selection']);
 
 const editor = useEditor({
   content: props.content as string,
@@ -64,7 +64,7 @@ const editor = useEditor({
     const {to} = editor.state.selection;
     const textUntilCursor = editor.state.doc.textBetween(0, to, '\n', '\n');
     const line = textUntilCursor.split('\n').length;
-    emit('cursor-location-changed', {pos: to, line});
+    emit('selection', {pos: to, line});
   },
 });
 
