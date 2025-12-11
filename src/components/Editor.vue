@@ -48,6 +48,7 @@ const editor = useEditor({
     ...defaultEditorProps,
     ...props.editorProps,
   },
+  autofocus: 'start',
   onUpdate: (e) => {
     emit('update:content', e.editor.getJSON());
     emit('update:contentHtml', e.editor.getHTML());
