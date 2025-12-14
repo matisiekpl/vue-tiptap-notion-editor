@@ -39,6 +39,8 @@
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
+
+    --tw-prose-bullets: #000000;
 }
 
 :root {
@@ -99,6 +101,7 @@
     --novel-highlight-gray: #f1f1ef;
 
     --font-title: "Cal Sans", sans-serif;
+    --tw-prose-bullets: #000000;
 }
 
 .dark {
@@ -157,6 +160,7 @@
     --novel-highlight-orange: #5c3a1a;
     --novel-highlight-pink: #5c1a3a;
     --novel-highlight-gray: #3a3a3a;
+    --tw-prose-bullets: #000000;
 }
 
 @layer base {

@@ -34,6 +34,11 @@
     ol {
         padding: 0 1rem;
     }
+
+    li::marker {
+        color: black;
+    }
+
 }
 
 
@@ -183,33 +188,45 @@ ul[data-type="taskList"] > li > div  {
     font-size: 32px;
     line-height: 40px;
     font-weight: 700;
+    margin-top: 0.65em;
+    margin-bottom: 0.55em;
 }
 .ProseMirror.prose h2,
 .prose :where(h2):not(:where([class~=not-prose] *)) {
     font-size: 24px;
     line-height: 26px;
     font-weight: 600;
+    margin-top: 0.65em;
+    margin-bottom: 0.55em;
 }
 .ProseMirror.prose h3,
 .prose :where(h3):not(:where([class~=not-prose] *)) {
     font-size: 20px;
     line-height: 26px;
     font-weight: 600;
+    margin-top: 0.65em;
+    margin-bottom: 0.55em;
 }
 .ProseMirror.prose h4,
 .prose :where(h4):not(:where([class~=not-prose] *)) {
     font-size: 18px;
     line-height: 24px;
     font-weight: 600;
+    margin-top: 0.65em;
+    margin-bottom: 0.55em;
 }
 .ProseMirror.prose h5,
 .prose :where(h5):not(:where([class~=not-prose] *)) {
     font-size: 16px;
     line-height: 24px;
     font-weight: 590;
+    margin-top: 0.65em;
+    margin-bottom: 0.55em;
 }
 .ProseMirror.prose h6,
 .prose :where(h6):not(:where([class~=not-prose] *)) {
     font-size: 13px;
     line-height: 1.24;
+    margin-top: 0.65em;
+    margin-bottom: 0.55em;
 }
