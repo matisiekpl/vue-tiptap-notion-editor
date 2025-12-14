@@ -39,6 +39,9 @@
         color: black;
     }
 
+    code:before, code:after {
+        display: none;
+    }
 }
 
 
