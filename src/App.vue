@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import {provide, ref} from "vue";
+import {ref} from "vue";
 import Editor from "./components/Editor.vue";
 import {Editor as EditorClass} from "@tiptap/core";
 import {defaultEditorContent} from "./lib/default-content";
 
 const editor = ref<{ editor: EditorClass }>();
 
-function wait(ms, value) {
+function wait(ms: number, value: any) {
   return new Promise(resolve => setTimeout(resolve, ms, value));
 }
 
 async function onUpload(_file: File) {
   await wait(1000, 0);
-  return null;
   return 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Patinhas_esteve_aqui_-_Estadio_do_Cerecamp_4_-_panoramio.jpg/120px-Patinhas_esteve_aqui_-_Estadio_do_Cerecamp_4_-_panoramio.jpg';
 }
 
@@ -38,7 +37,8 @@ const title = ref('');
       {{ title }}
     </div>
     <div class="border-b border-l border-r p-4">
-      <Editor ref="editor" v-model:content="content" v-model:content-html="contentHTML" v-model:title="title" :upload="onUpload"
+      <Editor ref="editor" v-model:content="content" v-model:content-html="contentHTML" v-model:title="title"
+              :upload="onUpload"
               :on-attachment-upload="onAttachmentUpload" :structured-document="true"/>
     </div>
   </div>

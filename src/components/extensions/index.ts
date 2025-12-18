@@ -28,7 +28,6 @@ import TiptapUnderline from "@tiptap/extension-underline";
 import {InputRule} from "@tiptap/core";
 import {createSlashCommand} from "./slashExtension";
 import UploadImagesPlugin from "../plugins/uploadImages.ts";
-import UpdatedImage from "./updatedImage.ts";
 import Attachment from "./attachment";
 import {createPasteUploads} from "./pasteUploads";
 import {EditorContext} from "../Editor.vue";
@@ -126,11 +125,6 @@ export function createDefaultExtension(context: EditorContext) {
             },
         }).configure({
             allowBase64: true,
-            HTMLAttributes: {
-                class: "rounded-lg !my-4",
-            },
-        }),
-        UpdatedImage.configure({
             HTMLAttributes: {
                 class: "rounded-lg !my-4",
             },
