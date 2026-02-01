@@ -60,6 +60,7 @@
     "@tiptap/extension-text": "^3.3.0",
     "@tiptap/extension-text-style": "^2.1.7",
     "@tiptap/extension-underline": "^2.1.7",
+    "@tiptap/extension-youtube": "^2.1.7",
     "@tiptap/extensions": "^3.13.0",
     "@tiptap/pm": "^2.1.7",
     "@tiptap/starter-kit": "^2.1.7",

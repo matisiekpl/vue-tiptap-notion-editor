@@ -25,6 +25,7 @@ import Text from "@tiptap/extension-text";
 import TextStyle from "@tiptap/extension-text-style";
 import TiptapLink from "@tiptap/extension-link";
 import TiptapUnderline from "@tiptap/extension-underline";
+import Youtube from "@tiptap/extension-youtube";
 import {InputRule} from "@tiptap/core";
 import {createSlashCommand} from "./slashExtension";
 import UploadImagesPlugin from "../plugins/uploadImages.ts";
@@ -144,6 +145,11 @@ export function createDefaultExtension(context: EditorContext) {
             includeChildren: true,
         }),
         TiptapUnderline,
+        Youtube.configure({
+            HTMLAttributes: {
+                class: "rounded-lg border border-stone-200 !my-4",
+            },
+        }),
         TextStyle,
         Color,
         Highlight.configure({

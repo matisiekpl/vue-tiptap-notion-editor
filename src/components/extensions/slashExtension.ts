@@ -13,6 +13,7 @@ import {
     ListOrdered,
     Text,
     TextQuote,
+    Youtube,
 } from "lucide-vue-next";
 import SlashCommandList from "./slashCommandList.vue";
 import {startImageUpload} from "../plugins/uploadImages.ts";
@@ -188,6 +189,25 @@ export function createSlashCommand(context: EditorContext) {
                         }
                     };
                     input.click();
+                },
+            },
+            {
+                title: "Youtube",
+                description: "Embed a YouTube video.",
+                searchTerms: ["video", "youtube", "embed"],
+                icon: Youtube,
+                command: ({editor, range}: CommandProps) => {
+                    const videoLink = prompt("Please enter YouTube URL");
+                    if (videoLink) {
+                        editor
+                            .chain()
+                            .focus()
+                            .deleteRange(range)
+                            .setYoutubeVideo({
+                                src: videoLink,
+                            })
+                            .run();
+                    }
                 },
             },
             {
