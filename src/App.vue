@@ -23,10 +23,24 @@ async function onAttachmentUpload(_file: File) {
 const content = ref(defaultEditorContent);
 const contentHTML = ref('');
 const title = ref('');
+
+function focusEditor(position?: 'start' | 'end') {
+  editor.value?.focus(position);
+}
+
+function blurEditor() {
+  editor.value?.blur();
+}
 </script>
 
 <template>
   <div class="m-12">
+    <div class="flex gap-2 mb-4">
+      <button class="px-3 py-1.5 text-sm border rounded hover:bg-gray-100 transition-colors cursor-pointer" @click="focusEditor()">Focus</button>
+      <button class="px-3 py-1.5 text-sm border rounded hover:bg-gray-100 transition-colors cursor-pointer" @click="focusEditor('start')">Focus Start</button>
+      <button class="px-3 py-1.5 text-sm border rounded hover:bg-gray-100 transition-colors cursor-pointer" @click="focusEditor('end')">Focus End</button>
+      <button class="px-3 py-1.5 text-sm border rounded hover:bg-gray-100 transition-colors cursor-pointer" @click="blurEditor()">Blur</button>
+    </div>
     <div class="p-4 border-t border-r border-l">
       {{ content }}
     </div>

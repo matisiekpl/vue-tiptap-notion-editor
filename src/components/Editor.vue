@@ -69,8 +69,20 @@ const editor = useEditor({
   },
 });
 
+type FocusPosition = 'start' | 'end' | 'all' | number | boolean | null;
+
+function focus(position?: FocusPosition) {
+  editor.value?.chain().focus(position ?? null).run();
+}
+
+function blur() {
+  editor.value?.commands.blur();
+}
+
 defineExpose({
   editor,
+  focus,
+  blur,
 });
 
 const hydrated = ref(false);
