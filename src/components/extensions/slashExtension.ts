@@ -191,25 +191,20 @@ export function createSlashCommand(context: EditorContext) {
                     input.click();
                 },
             },
-            {
-                title: "Youtube",
-                description: "Embed a YouTube video.",
-                searchTerms: ["video", "youtube", "embed"],
-                icon: Youtube,
-                command: ({editor, range}: CommandProps) => {
-                    const videoLink = prompt("Please enter YouTube URL");
-                    if (videoLink) {
-                        editor
-                            .chain()
-                            .focus()
-                            .deleteRange(range)
-                            .setYoutubeVideo({
-                                src: videoLink,
-                            })
-                            .run();
-                    }
-                },
-            },
+            // {
+            //     title: "Youtube",
+            //     description: "Embed a YouTube video.",
+            //     searchTerms: ["video", "youtube", "embed"],
+            //     icon: Youtube,
+            //     command: ({editor, range}: CommandProps) => {
+            //         editor
+            //             .chain()
+            //             .focus()
+            //             .deleteRange(range)
+            //             .insertContent({ type: 'youtubePlaceholder' })
+            //             .run();
+            //     },
+            // },
             {
                 title: "Attachment",
                 description: "Upload a file attachment.",

@@ -1,6 +1,7 @@
 <template>
   <BubbleMenu
-    :editor="editor"
+    v-if="editor"
+    :editor="(editor as any)"
     class="flex bg-white border divide-x rounded shadow-xl w-fit divide-stone-200 border-stone-200"
   >
     <div class="flex">
@@ -27,9 +28,8 @@
 </template>
 
 <script setup lang="ts">
-import { BubbleMenu } from "@tiptap/vue-3";
+import { BubbleMenu, Editor } from "@tiptap/vue-3";
 import { PropType } from "vue";
-import { Editor } from "@tiptap/core";
 import {
   BoldIcon,
   ItalicIcon,

@@ -7,7 +7,7 @@ import {defaultEditorProps} from "../lib/props";
 import BubbleMenu from "../components/BubbleMenu/index.vue";
 import {Toaster} from "sonner";
 import {DragHandle} from '@tiptap/extension-drag-handle-vue-3';
-import {GripVertical} from "lucide-vue-next";
+import {GripVertical, Trash2} from "lucide-vue-next";
 
 export interface EditorContext {
   onUpload: (file: File) => Promise<string>;
@@ -81,6 +81,23 @@ watchEffect(() => {
     emit('hydrated');
   }
 });
+
+const currentNodePos = ref<number | null>(null);
+
+function handleNodeChange({pos}: {node: any; editor: any; pos: number}) {
+  currentNodePos.value = pos;
+}
+
+function removeCurrentNode() {
+  if (editor.value && currentNodePos.value !== null) {
+    const {state} = editor.value;
+    const pos = currentNodePos.value;
+    const node = state.doc.nodeAt(pos);
+    if (node) {
+      editor.value.chain().focus().deleteRange({from: pos, to: pos + node.nodeSize}).run();
+    }
+  }
+}
 </script>
 
 <template>
@@ -88,11 +105,18 @@ watchEffect(() => {
     <BubbleMenu v-if="editor" :editor="editor"/>
     <EditorContent :editor="editor" class="cursor-text"/>
     <div class="grow w-full cursor-text"></div>
-    <DragHandle v-if="editor" :editor="editor">
-      <div class="relative">
-        <div class="p-2 bg-white rounded-lg border mr-2 hover:brightness-90 transition-all cursor-pointer">
+    <DragHandle v-if="editor" :editor="editor" @nodeChange="handleNodeChange">
+      <div class="relative flex flex-col items-center gap-0.5 mr-2">
+        <div class="p-2 bg-white rounded-lg border hover:brightness-90 transition-all cursor-pointer">
           <GripVertical size="12"/>
         </div>
+        <button
+          type="button"
+          class="p-2 bg-white rounded-lg border hover:bg-red-50 hover:text-red-500 transition-all cursor-pointer text-black"
+          @click="removeCurrentNode"
+        >
+          <Trash2 size="12"/>
+        </button>
       </div>
     </DragHandle>
   </div>
