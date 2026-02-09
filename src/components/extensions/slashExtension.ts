@@ -13,7 +13,6 @@ import {
     ListOrdered,
     Text,
     TextQuote,
-    Youtube,
 } from "lucide-vue-next";
 import SlashCommandList from "./slashCommandList.vue";
 import {startImageUpload} from "../plugins/uploadImages.ts";
