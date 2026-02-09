@@ -91,7 +91,7 @@
 </template>
 
 <script setup lang="ts">
-import { Editor } from "@tiptap/core";
+import { Editor } from "@tiptap/vue-3";
 import { Check, ChevronDown } from "lucide-vue-next";
 import { PropType, computed } from "vue";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";

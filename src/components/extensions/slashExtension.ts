@@ -197,17 +197,12 @@ export function createSlashCommand(context: EditorContext) {
                 searchTerms: ["video", "youtube", "embed"],
                 icon: Youtube,
                 command: ({editor, range}: CommandProps) => {
-                    const videoLink = prompt("Please enter YouTube URL");
-                    if (videoLink) {
-                        editor
-                            .chain()
-                            .focus()
-                            .deleteRange(range)
-                            .setYoutubeVideo({
-                                src: videoLink,
-                            })
-                            .run();
-                    }
+                    editor
+                        .chain()
+                        .focus()
+                        .deleteRange(range)
+                        .insertContent({ type: 'youtubePlaceholder' })
+                        .run();
                 },
             },
             {

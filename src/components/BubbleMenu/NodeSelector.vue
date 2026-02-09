@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { Editor } from "@tiptap/core";
+import { Editor } from "@tiptap/vue-3";
 import {
   Check,
   ChevronDown,

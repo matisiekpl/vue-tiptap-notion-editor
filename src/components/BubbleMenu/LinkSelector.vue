@@ -52,7 +52,7 @@
 </template>
 
 <script setup lang="ts">
-import { Editor } from "@tiptap/core";
+import { Editor } from "@tiptap/vue-3";
 import { Check, Trash } from "lucide-vue-next";
 import { PropType, ref } from "vue";
 
